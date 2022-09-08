@@ -1,6 +1,6 @@
 import * as C from './styles'
 import { Item } from '../../types/item'
-import { useState } from 'react';
+import { UserData } from '../UserData/index'
 
 type Props = {
   item: Item; 
@@ -13,11 +13,12 @@ export const ListItem = ({ item, changeTaskValue }: Props) => {
   
   return (
     <C.Container taskDone={item.taskDone}>
+      <UserData  item={item}/>
       <input 
         type="checkbox" checked={item.taskDone} 
         onChange={(e) => changeTaskValue(item.id, e.target.checked)}
       />
-      <label>{item.name} - {item.taskDone.toString()}</label>
+      <label>{item.tasks}</label>
     </C.Container>
   )
 }

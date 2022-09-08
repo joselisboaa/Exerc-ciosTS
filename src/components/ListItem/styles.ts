@@ -7,6 +7,7 @@ type ContainerProps = {
 export const Container = styled.div(({ taskDone }: ContainerProps) => (
 `
   display: flex;
+  flex-flow: row wrap;
   background-color: #20212C;
   padding: 10px;
   border-radius: 10px;
@@ -23,6 +24,10 @@ export const Container = styled.div(({ taskDone }: ContainerProps) => (
   label {
     color: #CCC;
     text-decoration: ${taskDone ? 'line-through' : 'initial'}
+  }
+
+  div {
+    flex: 100%;
   }
 `
 ));

@@ -1,19 +1,25 @@
 import './App.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as C from './App.styles'
 import { Item } from './types/item'
 import { ListItem } from './components/ListItem'
-import { initialData } from './services/data'
 import { AddTask } from './components/AddTask'
+import { FetchingData } from './services/fetchingData'
 
 function App() {
-  const [list, setList] = useState<Item[]>(initialData);
-
-  const handleAddTask = (taskName: string) => {
+  const [list, setList] = useState<Item[]>([]);
+  
+  useEffect(() => {
+    FetchingData().then(data => setList(data));
+  }, []);
+  
+  const handleAddTask = (taskName: string, personName: string) => {
     let newList = [...list];
     newList.push({
       id: list.length + 1,
-      name: taskName,
+      tasks: taskName,
+      first_name: personName,
+      last_name: '',
       taskDone: false
     });
 
@@ -30,6 +36,7 @@ function App() {
 
     setList(newList);
   }
+
 
   return (
     <C.Container>
